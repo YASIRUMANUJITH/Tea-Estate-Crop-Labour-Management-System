@@ -1,0 +1,39 @@
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement\WorkerManagement\bin\Debug\WorkerManagement.exe.config
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement\WorkerManagement\bin\Debug\WorkerManagement.exe
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement\WorkerManagement\bin\Debug\WorkerManagement.pdb
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement\WorkerManagement\obj\Debug\WorkerManagement.csproj.AssemblyReference.cache
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement\WorkerManagement\obj\Debug\WorkerManagement.Form1.resources
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement\WorkerManagement\obj\Debug\WorkerManagement.Properties.Resources.resources
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement\WorkerManagement\obj\Debug\WorkerManagement.csproj.GenerateResource.cache
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement\WorkerManagement\obj\Debug\WorkerManagement.csproj.CoreCompileInputs.cache
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement\WorkerManagement\obj\Debug\WorkerManagement.exe
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement\WorkerManagement\obj\Debug\WorkerManagement.pdb
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement\WorkerManagement\obj\Debug\WorkerManagement.exe.config
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement\WorkerManagement\bin\Debug\Database1.mdf
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement\WorkerManagement\bin\Debug\Database1_log.ldf
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement - Copy\WorkerManagement\bin\Debug\Database1.mdf
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement - Copy\WorkerManagement\bin\Debug\Database1_log.ldf
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement - Copy\WorkerManagement\bin\Debug\WorkerManagement.exe.config
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement - Copy\WorkerManagement\bin\Debug\WorkerManagement.exe
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement - Copy\WorkerManagement\bin\Debug\WorkerManagement.pdb
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.csproj.AssemblyReference.cache
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.exe.config
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.Form1.resources
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.Properties.Resources.resources
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.csproj.GenerateResource.cache
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.csproj.CoreCompileInputs.cache
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.exe
+C:\Users\CompFix\Desktop\vstudio\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.pdb
+C:\Users\CompFix\Desktop\WorkerManagement - Copy\WorkerManagement\bin\Debug\Database1.mdf
+C:\Users\CompFix\Desktop\WorkerManagement - Copy\WorkerManagement\bin\Debug\Database1_log.ldf
+C:\Users\CompFix\Desktop\WorkerManagement - Copy\WorkerManagement\bin\Debug\WorkerManagement.exe.config
+C:\Users\CompFix\Desktop\WorkerManagement - Copy\WorkerManagement\bin\Debug\WorkerManagement.exe
+C:\Users\CompFix\Desktop\WorkerManagement - Copy\WorkerManagement\bin\Debug\WorkerManagement.pdb
+C:\Users\CompFix\Desktop\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.csproj.AssemblyReference.cache
+C:\Users\CompFix\Desktop\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.exe.config
+C:\Users\CompFix\Desktop\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.Form1.resources
+C:\Users\CompFix\Desktop\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.Properties.Resources.resources
+C:\Users\CompFix\Desktop\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.csproj.GenerateResource.cache
+C:\Users\CompFix\Desktop\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.csproj.CoreCompileInputs.cache
+C:\Users\CompFix\Desktop\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.exe
+C:\Users\CompFix\Desktop\WorkerManagement - Copy\WorkerManagement\obj\Debug\WorkerManagement.pdb
