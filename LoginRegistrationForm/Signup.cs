@@ -16,24 +16,11 @@ namespace LoginRegistrationForm
 {
     public partial class Signup : Form
     {
-        private readonly string dbPath;
-        private readonly string connString;
+        string connString = $"Data Source={Path.Combine(Application.StartupPath, "Data", "main.db")}";
 
         public Signup()
         {
             InitializeComponent();
-            
-            // Setup database path
-            string dataDirectory = Path.Combine(Application.StartupPath, "Data");
-            
-            // Create the Data directory if it doesn't exist
-            if (!Directory.Exists(dataDirectory))
-            {
-                Directory.CreateDirectory(dataDirectory);
-            }
-
-            dbPath = Path.Combine(dataDirectory, "main.db");
-            connString = $"Data Source={dbPath}";
         }
 
         private void signup_login_Click(object sender, EventArgs e)
@@ -51,14 +38,13 @@ namespace LoginRegistrationForm
         // Email validation method
         private bool IsValidEmail(string email)
         {
-            //if (string.IsNullOrWhiteSpace(email))
-            //    return false;
+            if (string.IsNullOrWhiteSpace(email))
+                return false;
 
-            //// Email regex pattern
-            //string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-            //return Regex.IsMatch(email, emailPattern);
+            // Email regex pattern
+            string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            return Regex.IsMatch(email, emailPattern);
 
-            return true;
         }
 
         // Username validation method with admin restriction
@@ -117,46 +103,44 @@ namespace LoginRegistrationForm
         // Check if email already exists in database
         private bool IsEmailExists(string email, SqliteConnection conn)
         {
-            //try
-            //{
-            //    string checkEmail = "SELECT COUNT(*) FROM userdata WHERE email = @email";
-            //    using (SqliteCommand checkEmailCmd = new SqliteCommand(checkEmail, conn))
-            //    {
-            //        checkEmailCmd.Parameters.AddWithValue("@email", email.Trim());
-            //        int count = (int)checkEmailCmd.ExecuteScalar();
-            //        return count > 0;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error checking email: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return true; // Return true to prevent registration if there's an error
-            //}
+            try
+            {
+                string checkEmail = "SELECT COUNT(*) FROM userdata WHERE email = @email";
+                using (SqliteCommand checkEmailCmd = new SqliteCommand(checkEmail, conn))
+                {
+                    checkEmailCmd.Parameters.AddWithValue("@email", email.Trim());
+                    var result = checkEmailCmd.ExecuteScalar();
+                    // Convert the result to Int64 first, then to int
+                    return Convert.ToInt32(result) > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error checking email: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
 
-            return false;
         }
 
         // Check if username already exists in database
         private bool IsUsernameExists(string username, SqliteConnection conn)
         {
-            //try
-            //{
-            //    string checkUsername = "SELECT COUNT(*) FROM userdata WHERE username = @username";
-            //    using (SqliteCommand checkUsernameCmd = new SqliteCommand(checkUsername, conn))
-            //    {
-            //        checkUsernameCmd.Parameters.AddWithValue("@username", username.Trim());
-            //        int count = (int)checkUsernameCmd.ExecuteScalar();
-            //        return count > 0;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error checking username: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return true; // Return true to prevent registration if there's an erro
-            // }
-
-            return false;
-            
+            try
+            {
+                string checkUsername = "SELECT COUNT(*) FROM userdata WHERE username = @username";
+                using (SqliteCommand checkUsernameCmd = new SqliteCommand(checkUsername, conn))
+                {
+                    checkUsernameCmd.Parameters.AddWithValue("@username", username.Trim());
+                    var result = checkUsernameCmd.ExecuteScalar();
+                    // Convert the result to Int64 first, then to int
+                    return Convert.ToInt32(result) > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error checking username: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
         }
 
         // Validate all fields method
@@ -210,16 +194,9 @@ namespace LoginRegistrationForm
 
         private void signup_btn_Click(object sender, EventArgs e)
         {
-            try
+            using (var conn = new SqliteConnection(connString))
             {
-                // Ensure database directory exists
-                string dataDirectory = Path.GetDirectoryName(dbPath);
-                if (!Directory.Exists(dataDirectory))
-                {
-                    Directory.CreateDirectory(dataDirectory);
-                }
-
-                using (var conn = new SqliteConnection(connString))
+                try
                 {
                     conn.Open();
 
@@ -278,10 +255,10 @@ namespace LoginRegistrationForm
                         this.Hide();
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error connecting Database: " + ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error connecting Database: " + ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -296,6 +273,11 @@ namespace LoginRegistrationForm
             {
                 signup_password.PasswordChar = '*';
             }
+        }
+
+        private void signup_password_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -9,16 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using Microsoft.Data.Sqlite;
+using System.Text.RegularExpressions;
+using Microsoft.Data.Sqlite;
+using System.IO;
 
 namespace LoginRegistrationForm
 {
     public partial class Form1 : Form
     {
-        string connString = "Data Source=main.db";
-        
+        private readonly string connString;
+
         public Form1()
         {
             InitializeComponent();
+            string dbPath = Path.Combine(Application.StartupPath, "Data", "main.db");
+            connString = $"Data Source={dbPath}";
         }
 
         private void login_register_Click(object sender, EventArgs e)
@@ -35,88 +40,48 @@ namespace LoginRegistrationForm
 
         private void login_btn_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(login_username.Text) || string.IsNullOrWhiteSpace(login_password.Text))
+            {
+                MessageBox.Show("Please fill all blank fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (var conn = new SqliteConnection(connString))
             {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
+                try
                 {
-                    cmd.CommandText = @"
-                    CREATE TABLE IF NOT EXISTS userdata (
-                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    username TEXT NOT NULL,
-                    email TEXT NOT NULL,
-                    passowrd TEXT NOT NULL
-                );";
-                    cmd.ExecuteNonQuery();
+                    conn.Open();
 
-                }
-                if (login_username.Text == "" || login_password.Text == "")
-                {
-                    MessageBox.Show("Please fill all the blank fields", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    if (conn.State != ConnectionState.Open)
+                    // Check if username exists and verify password
+                    string query = "SELECT password FROM userdata WHERE username = @username";
+                    using (var cmd = new SqliteCommand(query, conn))
                     {
-                        try
+                        cmd.Parameters.AddWithValue("@username", login_username.Text.Trim());
+                        var result = cmd.ExecuteScalar();
+
+                        if (result == null)
                         {
-                            conn.Open();
-
-                            // First check if username exists
-                            String checkUsername = "SELECT COUNT(*) FROM userdata WHERE username = @username";
-                            using (SqliteCommand cmdUsername = new SqliteCommand(checkUsername, conn))
-                            {
-                                cmdUsername.Parameters.AddWithValue("@username", login_username.Text);
-                                int usernameCount = (int)cmdUsername.ExecuteScalar();
-
-                                if (usernameCount == 0)
-                                {
-                                    MessageBox.Show("Username does not exist", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    return;
-                                }
-                            }
-
-                            // If username exists, get the actual password from database and compare case-sensitively
-                            String getPassword = "SELECT passowrd FROM userdata WHERE username = @username";
-                            using (SqliteCommand cmdGetPassword = new SqliteCommand(getPassword, conn))
-                            {
-                                cmdGetPassword.Parameters.AddWithValue("@username", login_username.Text);
-                                object result = cmdGetPassword.ExecuteScalar();
-
-                                if (result != null)
-                                {
-                                    string storedPassword = result.ToString();
-
-                                    // Case-sensitive password comparison
-                                    if (storedPassword != login_password.Text)
-                                    {
-                                        MessageBox.Show("Incorrect password", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        return;
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Error retrieving password", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    return;
-                                }
-                            }
-
-                            // If both username and password are correct
-                            MessageBox.Show("Logged in Successfully", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            AdminDashboard dashboard = new AdminDashboard();
-                            dashboard.Show();
-                            this.Hide();
+                            MessageBox.Show("Username does not exist", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                         }
-                        catch (Exception ex)
+
+                        string storedPassword = result.ToString();
+                        if (storedPassword != login_password.Text)
                         {
-                            MessageBox.Show("Error Connecting: " + ex, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Incorrect password", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                         }
-                        finally
-                        {
-                            conn.Close();
-                        }
+
+                        // Login successful
+                        MessageBox.Show("Logged in Successfully", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        AdminDashboard dashboard = new AdminDashboard();
+                        dashboard.Show();
+                        this.Hide();
                     }
-            
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Database Error: " + ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

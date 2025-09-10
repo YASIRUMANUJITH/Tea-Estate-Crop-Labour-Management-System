@@ -12,11 +12,58 @@ namespace LoginRegistrationForm
 {
     public partial class AdminDashboard : Form
     {
+        // Store the original colors
+        private Color originalColor6;
+        private Color originalColor7;
+        private Color originalColor8;
+        private Color originalColor9;
+        private Color originalColor10;
+        private Color originalColor12;
+
         public AdminDashboard()
         {
             InitializeComponent();
+
+        }
+
+     
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           worker dashboard = new worker();
+           dashboard.Show();
+            this.Hide();
         }
 
        
+
+        private void AdminDashboard_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Entry dashboard = new Entry();
+            dashboard.Show();
+            this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Salary dashboard = new Salary();
+            dashboard.Show();
+            this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Feature dashboard = new Feature();
+            dashboard.Show();
+            this.Hide();
+        }
+
+        
     }
 }
+
