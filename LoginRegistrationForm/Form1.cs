@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Microsoft.Data.Sqlite;
 using System.Text.RegularExpressions;
-using Microsoft.Data.Sqlite;
 using System.IO;
 
 namespace LoginRegistrationForm

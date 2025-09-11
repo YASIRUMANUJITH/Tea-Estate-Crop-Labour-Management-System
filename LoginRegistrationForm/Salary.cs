@@ -12,14 +12,18 @@ namespace LoginRegistrationForm
 {
     public partial class Salary : Form
     {
+
         public Salary()
         {
             InitializeComponent();
         }
 
-        private void Salary_Load(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            //if (comboBox1.Text == "")
+            //{
+            //    // warning.Text = "Select grade";
+            //}
         }
     }
 }
